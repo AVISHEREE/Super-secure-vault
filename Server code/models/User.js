@@ -1,0 +1,42 @@
+const mongoose = require("mongoose");
+const VaultEntrySchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    enum: ["password", "note", "image","other"],
+    dafault:"other",
+  },
+  encryptedData: {
+    type: String,
+    required: true,
+  },
+  salt: {
+    type: String,
+    required: true,
+  },
+  iv: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+const UserSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  pin: {
+    type: String,
+    required: true 
+  },
+  vault: [VaultEntrySchema]
+});
+
+module.exports = mongoose.model('User', UserSchema);
