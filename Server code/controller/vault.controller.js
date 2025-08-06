@@ -1,6 +1,7 @@
-const crypto = require("crypto");
-const User = require("../models/user");
-const bcrypt = require('bcrypt')
+import crypto from "crypto";
+import User from "../models/User.js";
+import bcrypt from "bcrypt";
+
 const encryptData = (data, userPin) => {
   const salt = crypto.randomBytes(16).toString("hex");
   const key = crypto.scryptSync(userPin, salt, 32);
@@ -248,8 +249,7 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-
-module.exports = {
+export {
   addVaultEntry,
   updateVaultEntry,
   getAllEntry,

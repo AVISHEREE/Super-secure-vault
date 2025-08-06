@@ -1,13 +1,13 @@
-const Router = require('router');
-const { addVaultEntry, updateVaultEntry, getAllEntry , getSingleEntry , deleteEntry } = require('../controller/vault.controller');
-const verifyToken = require('../middlewares/auth.middleware');
+import Router from 'router';
+import { addVaultEntry, updateVaultEntry, getAllEntry, getSingleEntry, deleteEntry } from '../controller/vault.controller.js';
+import verifyToken from '../middlewares/auth.middleware.js';
 
 const vaultRouter = Router();
 
-vaultRouter.route('/add-entry').post(verifyToken,addVaultEntry);
-vaultRouter.route('/get-entry').post(verifyToken,getSingleEntry);
-vaultRouter.route('/get-entrys').post(verifyToken,getAllEntry);
-vaultRouter.route('/update-entry').patch(verifyToken,updateVaultEntry);
-vaultRouter.route('/delete-entry').delete(verifyToken,deleteEntry);
+vaultRouter.route('/add-entry').post(verifyToken, addVaultEntry);
+vaultRouter.route('/get-entry').post(verifyToken, getSingleEntry);
+vaultRouter.route('/get-entrys').post(verifyToken, getAllEntry);
+vaultRouter.route('/update-entry').patch(verifyToken, updateVaultEntry);
+vaultRouter.route('/delete-entry').delete(verifyToken, deleteEntry);
 
-module.exports = vaultRouter;
+export default vaultRouter;

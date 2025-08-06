@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
-const User = require("../models/user");
+import bcrypt from "bcrypt";
+import User from "../models/User.js";
 
 const updateUser = async (req, res) => {
   const { field, data, currentPin } = req.body;
@@ -73,4 +73,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { updateUser , deleteUser };
+export { updateUser, deleteUser };

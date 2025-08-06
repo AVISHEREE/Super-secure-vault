@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
 const VaultEntrySchema = new mongoose.Schema({
   title: {
     type: String,
@@ -6,8 +7,8 @@ const VaultEntrySchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["password", "note", "image","other"],
-    dafault:"other",
+    enum: ["password", "note", "image", "other"],
+    dafault: "other",
   },
   encryptedData: {
     type: String,
@@ -26,17 +27,18 @@ const VaultEntrySchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   pin: {
     type: String,
-    required: true 
+    required: true,
   },
-  vault: [VaultEntrySchema]
+  vault: [VaultEntrySchema],
 });
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model("User", UserSchema);
