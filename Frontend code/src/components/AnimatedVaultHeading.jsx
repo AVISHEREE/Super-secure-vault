@@ -30,7 +30,7 @@ const AnimatedVaultHeading = () => {
   return (
     <div className="text-center mb-12 px-4">
       <div className="flex justify-center items-center gap-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-xl">
-        <span className="text-white">Save your</span>
+        <span className="text-neutral-100">Save your</span>
         <span
           key={label}
           className="fade-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
@@ -41,8 +41,8 @@ const AnimatedVaultHeading = () => {
 
       <div className="mt-4 flex justify-center items-center gap-3 animate-fade-slide">
         {icon}
-        <p className="text-sm sm:text-base text-gray-500">
-          Securely store your {label.toLowerCase()}s in your encrypted vault.
+        <p className="text-sm sm:text-base text-neutral-400">
+        Secure your {label.toLowerCase()}s in your encrypted vault.
         </p>
       </div>
     </div>

@@ -22,14 +22,14 @@ const Dashboard = () => {
   useEffect(() => {
     fetchVault();
     const isTokenExpired = (token) => {
-      if (!token) return true; // No token means it's effectively "expired" or invalid
+      if (!token) return true; 
       try {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000; // Current time in seconds
         return decodedToken.exp < currentTime; // Check if expiration time is in the past
       } catch (error) {
         console.error("Error decoding token:", error);
-        return true; // Treat decoding errors as expired/invalid
+        return true; 
       }
     };
     const getToken = JSON.stringify(localStorage.getItem("token"));
@@ -45,7 +45,7 @@ const Dashboard = () => {
     const token = getToken.replace(/"/g, "");
     try {
       const response = await axios.post(
-        "http://localhost:3000/vault/get-entrys",
+        "https://super-secure-vault.onrender.com/vault/get-entrys",
         { pin: "6464" },
         {
           headers: {
@@ -79,7 +79,7 @@ const Dashboard = () => {
       // 🔐 Handle delete logic
       try {
         const response = await axios.delete(
-          "http://localhost:3000/vault/delete-entry",
+          "https://super-secure-vault.onrender.com/vault/delete-entry",
           {
             data: {
               pin: pin,
@@ -107,7 +107,7 @@ const Dashboard = () => {
       // 🔓 Handle view/decrypt logic
       try {
         const response = await axios.post(
-          "http://localhost:3000/vault/get-entry",
+          "https://super-secure-vault.onrender.com/vault/get-entry",
           {
             pin: pin,
             vaultId: selectedEntry,
@@ -156,7 +156,10 @@ const Dashboard = () => {
 
     // If type is image, return gallery icon
     if (typeLower === "image") {
-      return "https://cdn-icons-png.flaticon.com/512/1829/1829586.png"; // Elegant gallery icon
+      return "./src/assets/image-photo-svgrepo-com.svg"; // Elegant gallery icon
+    }
+    else if(typeLower === "note") {
+      return "./src/assets/writing-note-svgrepo-com.svg"; // Elegant gallery icon
     }
 
     const iconMap = [
@@ -178,7 +181,7 @@ const Dashboard = () => {
       },
       {
         keyword: "instagram",
-        url: "https://cdn-icons-png.flaticon.com/512/145/145805.png",
+        url: "./src/assets/instagram-1-svgrepo-com.svg",
       },
       {
         keyword: "linkedin",
@@ -252,11 +255,11 @@ const Dashboard = () => {
       }
     }
 
-    return "https://cdn-icons-png.flaticon.com/512/1041/1041916.png"; // default elegant lock icon
+    return "./src/assets/file-svgrepo-com.svg"; // default elegant lock icon
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#bbd7fb] to-[#c8e2fb] pt-24 px-4 py-10 font-sans">
+    <div className="min-h-screen bg-neutral-900 pt-24 px-4 py-10 font-sans">
       <Navbar />
       <AnimatedVaultHeading />
 

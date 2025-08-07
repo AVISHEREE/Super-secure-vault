@@ -8,6 +8,8 @@ import {
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Document from "./pages/Document";
+import About from "./pages/AboutMe";
 const token = localStorage.getItem("token");
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           path="/signup"
           element={token ? <Navigate to="/" /> : <Signup />}
         />
+        <Route path="/document" element={<Document />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );

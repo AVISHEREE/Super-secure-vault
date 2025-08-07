@@ -1,5 +1,11 @@
 import axios from "axios";
-import { Lock, StickyNote, Image, File, ChevronDown } from "lucide-react";
+import {
+  Lock,
+  StickyNote,
+  Image,
+  File,
+  ChevronDown
+} from "lucide-react";
 import React, { useState } from "react";
 
 const AddEntryModal = ({ onClose }) => {
@@ -38,13 +44,13 @@ const AddEntryModal = ({ onClose }) => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:3000/vault/add-entry",
+        "https://super-secure-vault.onrender.com/vault/add-entry",
         { title, type, data, pin },
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+            "Content-Type": "application/json"
+          }
         }
       );
 
@@ -83,7 +89,7 @@ const AddEntryModal = ({ onClose }) => {
         <iframe
           src={data}
           title="PDF Preview"
-          className="w-full h-64 border rounded-lg mt-2"
+          className="w-full h-64 border border-white/20 rounded-lg mt-2"
         ></iframe>
       );
     }
@@ -94,7 +100,7 @@ const AddEntryModal = ({ onClose }) => {
         <textarea
           readOnly
           value={decoded}
-          className="w-full h-40 mt-2 p-2 rounded-lg bg-gray-100"
+          className="w-full h-40 mt-2 p-2 rounded-lg bg-white/10 text-white border border-white/20"
         ></textarea>
       );
     }
@@ -104,9 +110,8 @@ const AddEntryModal = ({ onClose }) => {
         <a
           href={data}
           download={fileName}
-          className="text-indigo-600 hover:underline text-sm"
+          className="text-indigo-400 hover:underline text-sm"
         >
-          📄 Download file: {fileName}
         </a>
       </div>
     );
@@ -114,7 +119,7 @@ const AddEntryModal = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center px-4">
-      <div className="relative bg-white/20 backdrop-blur-xl border border-white/30 p-8 rounded-2xl w-full max-w-md shadow-xl text-black">
+      <div className="relative bg-neutral-400/10 backdrop-blur-xl border border-white/30 p-8 rounded-2xl w-full max-w-md shadow-2xl text-white">
         <button
           onClick={onClose}
           className="absolute top-3 right-4 text-white text-2xl hover:text-red-400"
@@ -122,7 +127,7 @@ const AddEntryModal = ({ onClose }) => {
           &times;
         </button>
 
-        <h4 className="text-2xl font-bold mb-6 text-white text-center">
+        <h4 className="text-2xl font-bold mb-6 text-center">
           ➕ New Vault Entry
         </h4>
 
@@ -132,34 +137,34 @@ const AddEntryModal = ({ onClose }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Entry Title"
-            className="w-full px-4 py-2 rounded-lg bg-white/80 text-black placeholder-gray-600 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
 
           {/* Dropdown */}
-          <div className="relative w-full">
+          <div className="relative w-full text-black">
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="w-full pl-10 pr-10 py-3 appearance-none rounded-lg bg-white/70 text-gray-900 font-semibold shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400 backdrop-blur-md"
+              className="w-full pl-10 pr-10 py-3 appearance-none rounded-lg bg-white/10 text-white placeholder:text-neutral-400 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400"
             >
-              <option value="" disabled>
+              <option value="" disabled className="text-black">
                 🚀 Select Type
               </option>
-              <option value="password">Password</option>
-              <option value="note">Note</option>
-              <option value="image">Image</option>
-              <option value="other">Other</option>
+              <option className="text-black pl-1" value="password">Password</option>
+              <option className="text-black pl-1" value="note">Note</option>
+              <option className="text-black pl-1" value="image">Image</option>
+              <option className="text-black pl-1" value="other">Other</option>
             </select>
 
-            <div className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-700 pointer-events-none">
+            <div className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white pointer-events-none">
               {getIcon()}
             </div>
-            <div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-600 pointer-events-none">
+            <div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white/70 pointer-events-none">
               <ChevronDown className="w-5 h-5" />
             </div>
           </div>
 
-          {/* File Upload / Text Input */}
+          {/* File Upload or Text Data */}
           {type === "image" || type === "other" ? (
             <>
               <input
@@ -170,7 +175,7 @@ const AddEntryModal = ({ onClose }) => {
                     : ".pdf,.txt,.doc,.docx,.ppt,.pptx,.xls,.xlsx"
                 }
                 onChange={handleFileChange}
-                className="w-full px-4 py-2 rounded-lg bg-white/90 text-black font-medium file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200"
+                className="block w-full text-sm text-white bg-white/10 border border-white/20 rounded-lg cursor-pointer focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200"
               />
               {renderPreview()}
             </>
@@ -179,23 +184,24 @@ const AddEntryModal = ({ onClose }) => {
               type="text"
               value={data}
               onChange={(e) => setData(e.target.value)}
-              placeholder="Data"
-              className="w-full px-4 py-2 rounded-lg bg-white/80 text-black placeholder-gray-600 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="Enter Data"
+              className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
           )}
 
+          {/* PIN Input */}
           <input
             type="password"
             value={pin}
             onChange={(e) => setPin(e.target.value)}
             placeholder="Enter your PIN"
-            className="w-full px-4 py-2 rounded-lg bg-white/80 text-black placeholder-gray-600 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
 
         <button
           onClick={handleSubmit}
-          className="w-full mt-6 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition"
+          className="w-full mt-6 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition duration-300"
         >
           Save Entry
         </button>
