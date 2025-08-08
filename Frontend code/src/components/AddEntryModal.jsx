@@ -14,6 +14,7 @@ const AddEntryModal = ({ onClose }) => {
   const [data, setData] = useState("");
   const [fileName, setFileName] = useState("");
   const [pin, setPin] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -41,6 +42,7 @@ const AddEntryModal = ({ onClose }) => {
     }
 
     try {
+      setLoading(true);
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
@@ -63,6 +65,8 @@ const AddEntryModal = ({ onClose }) => {
         err.response?.data?.message ||
           "Something went wrong while adding the entry."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -133,7 +137,6 @@ const AddEntryModal = ({ onClose }) => {
         </h4>
 
         <div className="space-y-4">
-          {/* Title Input */}
           <input
             type="text"
             value={title}
@@ -142,7 +145,6 @@ const AddEntryModal = ({ onClose }) => {
             className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
 
-          {/* Type Dropdown */}
           <div className="relative w-full text-black">
             <select
               value={type}
@@ -166,7 +168,6 @@ const AddEntryModal = ({ onClose }) => {
             </div>
           </div>
 
-          {/* File or Text Input */}
           {type === "image" || type === "other" ? (
             <>
               <input
@@ -191,7 +192,6 @@ const AddEntryModal = ({ onClose }) => {
             />
           )}
 
-          {/* PIN Input */}
           <input
             type="password"
             value={pin}
@@ -201,12 +201,23 @@ const AddEntryModal = ({ onClose }) => {
           />
         </div>
 
-        {/* Save Button */}
         <button
           onClick={handleSubmit}
-          className="w-full mt-6 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition duration-300"
+          disabled={loading}
+          className={`w-full mt-6 px-4 py-2 rounded-lg font-semibold transition duration-300 flex justify-center items-center ${
+            loading
+              ? "bg-indigo-400 cursor-not-allowed"
+              : "bg-indigo-600 hover:bg-indigo-700"
+          }`}
         >
-          💾 Save Entry
+          {loading ? (
+            <div className="flex items-center gap-2">
+              <span className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              Saving...
+            </div>
+          ) : (
+            <>💾 Save Entry</>
+          )}
         </button>
       </div>
     </div>

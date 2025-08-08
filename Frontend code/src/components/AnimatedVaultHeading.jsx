@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { KeyRound, Image, FileText, File, FileArchive } from "lucide-react";
 
 const rotatingWords = [
-  { label: "pass", icon: <KeyRound size={26} className="text-purple-400" /> },
-  { label: "Img", icon: <Image size={26} className="text-pink-400" /> },
+  { label: "Pin", icon: <KeyRound size={26} className="text-purple-400" /> },
+  { label: "Img", icon: <Image size={23} className="text-pink-400" /> },
   { label: "PDF", icon: <FileText size={26} className="text-blue-400" /> },
-  { label: "Doc", icon: <FileArchive size={26} className="text-green-400" /> },
+  { label: "Doc", icon: <FileArchive size={23} className="text-green-400" /> },
   { label: "File", icon: <File size={26} className="text-yellow-400" /> },
 ];
 
@@ -33,7 +33,7 @@ const AnimatedVaultHeading = () => {
         </span>
       </div>
 
-      <div className="mt-6 flex justify-center items-center gap-3 animate-fade-slide">
+      <div className="mt-6 flex justify-center items-center gap-2 animate-fade-slide">
         {icon}
         <p className="text-base sm:text-lg text-neutral-400 font-medium">
           Secure your {label.toLowerCase()}s in your encrypted vault.
