@@ -84,19 +84,32 @@ const Info = ({ label, value, isPassword = false }) => (
 const ImagePreview = ({ src, onExpand }) => (
   <div className="flex flex-col gap-2">
     <span className="text-xs font-medium text-white/60 uppercase tracking-wide">Image</span>
+
     <img
       src={src}
       alt="Decrypted"
       className="rounded-xl shadow-md max-h-36 object-contain border border-white/20 bg-white/10 p-1"
     />
-    <button
-      onClick={onExpand}
-      className="text-sm text-blue-300 hover:text-blue-400 mt-1 flex items-center gap-1"
-    >
-      <Expand size={16} /> View Fullscreen
-    </button>
+
+    <div className="flex items-center gap-4 mt-1">
+      <button
+        onClick={onExpand}
+        className="text-sm text-blue-300 hover:text-blue-400 flex items-center gap-1"
+      >
+        <Expand size={16} /> View Fullscreen
+      </button>
+
+      <a
+        href={src}
+        download="vault-image.png"
+        className="text-sm text-blue-300 hover:text-blue-400 underline"
+      >
+        Download Image
+      </a>
+    </div>
   </div>
 );
+
 
 // PDF Preview
 const PdfPreview = ({ base64 }) => (

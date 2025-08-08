@@ -193,7 +193,7 @@ const AddEntryModal = ({ onClose }) => {
           )}
 
           <input
-            type="password"
+            type="number"
             value={pin}
             onChange={(e) => setPin(e.target.value)}
             placeholder="Enter your PIN"

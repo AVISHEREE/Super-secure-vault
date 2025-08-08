@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { KeyRound, Image, FileText, File, FileArchive } from "lucide-react";
 
 const rotatingWords = [
-  { label: "Pin", icon: <KeyRound size={26} className="text-purple-400" /> },
+  { label: "Pin", icon: <KeyRound size={23} className="text-purple-400" /> },
   { label: "Img", icon: <Image size={23} className="text-pink-400" /> },
-  { label: "PDF", icon: <FileText size={26} className="text-blue-400" /> },
+  { label: "PDF", icon: <FileText size={23} className="text-blue-400" /> },
   { label: "Doc", icon: <FileArchive size={23} className="text-green-400" /> },
-  { label: "File", icon: <File size={26} className="text-yellow-400" /> },
+  { label: "File", icon: <File size={23} className="text-yellow-400" /> },
 ];
 
 const AnimatedVaultHeading = () => {
@@ -23,7 +23,7 @@ const AnimatedVaultHeading = () => {
 
   return (
     <div className="text-center mb-16 px-4">
-      <div className="flex justify-center items-center gap-4 text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight drop-shadow-2xl">
+      <div className="flex justify-center items-center gap-4 text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight drop-shadow-2xl">
         <span className="text-white">Save your</span>
         <span
           key={label}
@@ -33,10 +33,10 @@ const AnimatedVaultHeading = () => {
         </span>
       </div>
 
-      <div className="mt-6 flex justify-center items-center gap-2 animate-fade-slide">
+      <div className="mt-3 flex justify-center items-center gap-1 animate-fade-slide">
         {icon}
-        <p className="text-base sm:text-lg text-neutral-400 font-medium">
-          Secure your {label.toLowerCase()}s in your encrypted vault.
+        <p className="text-base sm:text-xs text-neutral-400 font-medium">
+       All your {label.toLowerCase()}s are encrypted.
         </p>
       </div>
     </div>

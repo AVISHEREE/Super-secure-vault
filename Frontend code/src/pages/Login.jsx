@@ -63,7 +63,7 @@ const Login = () => {
               PIN
             </label>
             <input
-              type="password"
+              type="number"
               maxLength={8}
               placeholder="****"
               className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-indigo-400 backdrop-blur-md"

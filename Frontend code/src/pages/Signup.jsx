@@ -5,21 +5,31 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [pin, setPin] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccessMsg("");
+
     try {
       const res = await axios.post(
         "https://super-secure-vault.onrender.com/user/signup",
         { username, pin }
       );
-      if (res.data.success == 'true') {
-        navigate("/login");
+
+      if (res.data.success === "true") {
+        setSuccessMsg("Account created successfully! Please login.");
+        setTimeout(() => navigate("/login"), 2000); // Redirect after 2s
       }
     } catch (error) {
       alert(error.response?.data?.message || "Signup failed");
       console.error("Signup failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,7 +63,6 @@ const Signup = () => {
               type="number"
               value={pin}
               onChange={(e) => setPin(e.target.value)}
-              maxLength={8}
               placeholder="****"
               className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-indigo-400 backdrop-blur-md"
               required
@@ -62,16 +71,24 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 transition text-white font-semibold py-3 rounded-xl shadow-lg"
+            disabled={loading}
+            className={`w-full mt-4 ${
+              loading ? "bg-indigo-400" : "bg-indigo-600 hover:bg-indigo-700"
+            } transition text-white font-semibold py-3 rounded-xl shadow-lg`}
           >
-            Sign Up
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
-          <a
-            href="../login"
-            className=" hover:underline font-medium"
-          >
+
+          {successMsg && (
+            <p className="text-green-400 text-center text-sm mt-4">
+              {successMsg}
+            </p>
+          )}
+
+          <a href="../login" className="hover:underline font-medium">
             <p className="text-sm text-center text-neutral-300 mt-4">
-              Already have an account?<span className="text-indigo-400"> Log in </span>
+              Already have an account?
+              <span className="text-indigo-400"> Log in </span>
             </p>
           </a>
         </form>
