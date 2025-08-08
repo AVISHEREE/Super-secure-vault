@@ -84,7 +84,7 @@ const Login = () => {
           <button
             type="button"
             disabled={loading}
-            className={`w-full flex justify-center font-bold ${loading && 'opacity-60 cursor-not-allowed'}`}
+            className={`w-full cursor-pointer flex justify-center font-bold ${loading && 'opacity-60 cursor-not-allowed'}`}
             onClick={() => {
               alert("Logging in with demo account");
               handleLogin(null, "av@1", "6464");

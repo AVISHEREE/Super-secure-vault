@@ -3,13 +3,32 @@ import React, { useEffect, useRef, useState } from "react";
 const PinPromptModal = ({ pin, setPin, onSubmit, onClose }) => {
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [placeholder, setPlaceholder] = useState("Your PIN");
 
-  // Autofocus input on mount
   useEffect(() => {
     inputRef.current?.focus();
+    extractUserFromToken();
   }, []);
 
-  // Submit on Enter key
+  // Extract user info from JWT token
+  const extractUserFromToken = () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const payloadBase64 = token.split(".")[1];
+      const decodedPayload = JSON.parse(atob(payloadBase64));
+
+      const username = decodedPayload.username || decodedPayload.email;
+
+      if (username === "av@1") {
+        setPlaceholder("Your PIN (hint: 6464)");
+      }
+    } catch (err) {
+      console.error("Failed to decode token", err);
+    }
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSubmit();
@@ -19,7 +38,7 @@ const PinPromptModal = ({ pin, setPin, onSubmit, onClose }) => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await onSubmit(); // Await your submission logic (e.g. fetch or decrypt)
+      await onSubmit();
     } catch (err) {
       console.error("Submission failed", err);
     } finally {
@@ -47,12 +66,12 @@ const PinPromptModal = ({ pin, setPin, onSubmit, onClose }) => {
         {/* Input Field */}
         <input
           ref={inputRef}
-          type="password"
+          type="number"
           value={pin}
           onChange={(e) => setPin(e.target.value)}
           onKeyDown={handleKeyDown}
           className="w-full px-5 py-3 mb-6 rounded-xl bg-white/80 text-black placeholder-gray-600 text-lg sm:text-xl font-medium focus:outline-none focus:ring-2 focus:ring-purple-400"
-          placeholder="Your PIN"
+          placeholder={placeholder}
           disabled={loading}
         />
 

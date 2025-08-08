@@ -47,7 +47,7 @@ const Navbar = () => {
           ))}
           <li>
             <button
-              className="bg-red-500 text-white px-6 py-2 text-sm rounded-2xl hover:bg-red-600 transition font-bold shadow-md"
+              className="bg-red-500 cursor-pointer text-white px-6 py-2 text-sm rounded-2xl hover:bg-red-600 transition font-bold shadow-md"
               onClick={() => {
                 localStorage.removeItem("token");
                 window.location.reload();
@@ -89,7 +89,7 @@ const Navbar = () => {
             ))}
             <li>
               <button
-                className="w-full bg-red-500 text-white px-5 py-2 rounded-xl hover:bg-red-600 font-bold"
+                className="w-full cursor-pointer bg-red-500 text-white px-5 py-2 rounded-xl hover:bg-red-600 font-bold"
                 onClick={() => {
                   localStorage.removeItem("token");
                   window.location.reload();

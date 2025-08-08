@@ -50,7 +50,7 @@ const Signup = () => {
               PIN (up to 8 digits)
             </label>
             <input
-              type="password"
+              type="number"
               value={pin}
               onChange={(e) => setPin(e.target.value)}
               maxLength={8}

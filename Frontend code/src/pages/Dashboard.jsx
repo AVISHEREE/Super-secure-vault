@@ -231,9 +231,9 @@ const Dashboard = () => {
     const typeLower = type.toLowerCase();
 
     if (typeLower === "image")
-      return "../src/assets/image-photo-svgrepo-com.svg";
+      return "./src/assets/image-photo-svgrepo-com.svg";
     if (typeLower === "note")
-      return "../src/assets/writing-note-svgrepo-com.svg";
+      return "./src/assets/writing-note-svgrepo-com.svg";
 
     const iconMap = [
       {
@@ -254,7 +254,7 @@ const Dashboard = () => {
       },
       {
         keyword: "instagram",
-        url: "../src/assets/instagram-1-svgrepo-com.svg",
+        url: "./src/assets/instagram-1-svgrepo-com.svg",
       },
       {
         keyword: "linkedin",
@@ -286,7 +286,7 @@ const Dashboard = () => {
       if (lower.includes(service.keyword)) return service.url;
     }
 
-    return "../src/assets/file-svgrepo-com.svg";
+    return "./src/assets/file-svgrepo-com.svg";
   };
 
   return (
