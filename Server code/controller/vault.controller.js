@@ -32,6 +32,25 @@ const decryptData = (encryptedData, salt, iv, userPin) => {
   return decrypted;
 };
 
+const toggleStarredStatus = async (req, res) => {
+  const { starred , entryId } = req.body;
+  const userId  = req.user.id; 
+
+  try {
+    const user = await User.findById(userId);
+    const entry = user.vault.id(entryId);
+
+    if (!entry) return res.status(404).json({ message: "Entry not found" });
+
+    entry.starred = starred;
+    await user.save();
+
+    res.json({ success:'true' , message: "Star status updated", starred });
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 const addVaultEntry = async (req, res) => {
   try {
     const { title, type, data, pin } = req.body;
@@ -91,6 +110,7 @@ const getAllEntry = async (req, res) => {
             title: entry.title,
             type: entry.type,
             createdAt: entry.createdAt,
+            starred: entry.starred,
           };
         } catch (error) {
           return null; // Skip entries with invalid decryption
@@ -255,4 +275,5 @@ export {
   getAllEntry,
   getSingleEntry,
   deleteEntry,
+  toggleStarredStatus
 };

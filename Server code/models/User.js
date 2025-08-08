@@ -8,7 +8,7 @@ const VaultEntrySchema = new mongoose.Schema({
   type: {
     type: String,
     enum: ["password", "note", "image", "other"],
-    dafault: "other",
+    default: "other",
   },
   encryptedData: {
     type: String,
@@ -21,6 +21,10 @@ const VaultEntrySchema = new mongoose.Schema({
   iv: {
     type: String,
     required: true,
+  },
+  starred: {
+    type: Boolean,
+    default: false, 
   },
   createdAt: {
     type: Date,

@@ -1,5 +1,5 @@
 import Router from 'router';
-import { addVaultEntry, updateVaultEntry, getAllEntry, getSingleEntry, deleteEntry } from '../controller/vault.controller.js';
+import { addVaultEntry, updateVaultEntry, getAllEntry, getSingleEntry, deleteEntry, toggleStarredStatus } from '../controller/vault.controller.js';
 import verifyToken from '../middlewares/auth.middleware.js';
 
 const vaultRouter = Router();
@@ -9,5 +9,6 @@ vaultRouter.route('/get-entry').post(verifyToken, getSingleEntry);
 vaultRouter.route('/get-entrys').post(verifyToken, getAllEntry);
 vaultRouter.route('/update-entry').patch(verifyToken, updateVaultEntry);
 vaultRouter.route('/delete-entry').delete(verifyToken, deleteEntry);
+vaultRouter.route('/star-entry').post(verifyToken, toggleStarredStatus);
 
 export default vaultRouter;
