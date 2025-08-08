@@ -19,7 +19,7 @@ const Login = () => {
       }
       const token = response.data.token;
       localStorage.setItem("token", token);
-      window.location.reload();
+      navigate('/');
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
     }
@@ -74,7 +74,7 @@ const Login = () => {
             </p>
             </button>
           <a
-            href="/signup"
+            href="../signup"
             className=" hover:underline font-medium"
           >
             <p className="text-sm text-center text-neutral-300 mt-4">

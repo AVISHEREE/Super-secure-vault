@@ -67,7 +67,7 @@ const Signup = () => {
             Sign Up
           </button>
           <a
-            href="/login"
+            href="../login"
             className=" hover:underline font-medium"
           >
             <p className="text-sm text-center text-neutral-300 mt-4">

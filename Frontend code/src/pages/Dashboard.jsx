@@ -156,10 +156,10 @@ const Dashboard = () => {
 
     // If type is image, return gallery icon
     if (typeLower === "image") {
-      return "./src/assets/image-photo-svgrepo-com.svg"; // Elegant gallery icon
+      return "../src/assets/image-photo-svgrepo-com.svg"; // Elegant gallery icon
     }
     else if(typeLower === "note") {
-      return "./src/assets/writing-note-svgrepo-com.svg"; // Elegant gallery icon
+      return "../src/assets/writing-note-svgrepo-com.svg"; // Elegant gallery icon
     }
 
     const iconMap = [
@@ -181,7 +181,7 @@ const Dashboard = () => {
       },
       {
         keyword: "instagram",
-        url: "./src/assets/instagram-1-svgrepo-com.svg",
+        url: "../src/assets/instagram-1-svgrepo-com.svg",
       },
       {
         keyword: "linkedin",
@@ -255,7 +255,7 @@ const Dashboard = () => {
       }
     }
 
-    return "./src/assets/file-svgrepo-com.svg"; // default elegant lock icon
+    return "../src/assets/file-svgrepo-com.svg"; // default elegant lock icon
   };
 
   return (
