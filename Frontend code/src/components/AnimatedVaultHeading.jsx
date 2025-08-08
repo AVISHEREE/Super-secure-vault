@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  KeyRound,
-  Image,
-  FileText,
-  File,
-  FileArchive
-} from "lucide-react";
+import { KeyRound, Image, FileText, File, FileArchive } from "lucide-react";
 
 const rotatingWords = [
   { label: "pass", icon: <KeyRound size={26} className="text-purple-400" /> },
@@ -28,9 +22,9 @@ const AnimatedVaultHeading = () => {
   const { label, icon } = rotatingWords[index];
 
   return (
-    <div className="text-center mb-12 px-4">
-      <div className="flex justify-center items-center gap-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-xl">
-        <span className="text-neutral-100">Save your</span>
+    <div className="text-center mb-16 px-4">
+      <div className="flex justify-center items-center gap-4 text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight drop-shadow-2xl">
+        <span className="text-white">Save your</span>
         <span
           key={label}
           className="fade-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
@@ -39,10 +33,10 @@ const AnimatedVaultHeading = () => {
         </span>
       </div>
 
-      <div className="mt-4 flex justify-center items-center gap-3 animate-fade-slide">
+      <div className="mt-6 flex justify-center items-center gap-3 animate-fade-slide">
         {icon}
-        <p className="text-sm sm:text-base text-neutral-400">
-        Secure your {label.toLowerCase()}s in your encrypted vault.
+        <p className="text-base sm:text-lg text-neutral-400 font-medium">
+          Secure your {label.toLowerCase()}s in your encrypted vault.
         </p>
       </div>
     </div>

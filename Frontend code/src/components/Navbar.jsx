@@ -17,28 +17,27 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 bg-neutral-400/10 backdrop-blur-md border-b border-white/40 rounded-b-3xl">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
+    <nav className="w-full fixed top-0 left-0 z-50 bg-neutral-900/80 backdrop-blur-md border-b border-white/20 rounded-b-3xl">
+      <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <Link
           to="/"
-          className="text-2xl font-extrabold tracking-wide font-[Poppins] flex items-center gap-1"
+          className="text-3xl sm:text-4xl font-extrabold tracking-wide font-[Poppins] flex items-center gap-1"
         >
           <span className="text-white">My</span>
-          <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
+          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-transparent bg-clip-text">
             Vault
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
+        <ul className="hidden md:flex items-center gap-10 text-lg font-semibold">
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
                 to={link.path}
-                className={`transition-colors cursor-pointer ${
+                className={`transition-colors duration-300 ${
                   isActive(link.path)
-                    ? "text-rose-400 font-semibold"
+                    ? "text-rose-400"
                     : "text-neutral-300 hover:text-rose-300"
                 }`}
               >
@@ -47,12 +46,13 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-            <button className="bg-red-500 cursor-pointer text-white px-4 py-1.5 rounded-xl hover:bg-red-600 transition"
-            onClick={() => {
-                  localStorage.removeItem("token");
-                  window.location.reload();
-            }}>
-              
+            <button
+              className="bg-red-500 text-white px-6 py-2 text-sm rounded-2xl hover:bg-red-600 transition font-bold shadow-md"
+              onClick={() => {
+                localStorage.removeItem("token");
+                window.location.reload();
+              }}
+            >
               Logout
             </button>
           </li>
@@ -64,19 +64,19 @@ const Navbar = () => {
           className="md:hidden text-white ml-3"
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden px-6 pb-4">
-          <ul className="flex flex-col gap-4 text-sm font-medium">
+        <div className="md:hidden px-6 pb-6">
+          <ul className="flex flex-col gap-4 text-base font-medium">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`block w-full ${
+                  className={`block ${
                     isActive(link.path)
                       ? "text-rose-400 font-semibold"
                       : "text-neutral-300 hover:text-rose-300"
@@ -89,7 +89,7 @@ const Navbar = () => {
             ))}
             <li>
               <button
-                className="w-full cursor-pointer bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition"
+                className="w-full bg-red-500 text-white px-5 py-2 rounded-xl hover:bg-red-600 font-bold"
                 onClick={() => {
                   localStorage.removeItem("token");
                   window.location.reload();

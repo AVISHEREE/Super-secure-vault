@@ -112,6 +112,7 @@ const AddEntryModal = ({ onClose }) => {
           download={fileName}
           className="text-indigo-400 hover:underline text-sm"
         >
+          📥 Click to download {fileName}
         </a>
       </div>
     );
@@ -119,7 +120,7 @@ const AddEntryModal = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center px-4">
-      <div className="relative bg-neutral-400/10 backdrop-blur-xl border border-white/30 p-8 rounded-2xl w-full max-w-md shadow-2xl text-white">
+      <div className="relative bg-neutral-400/10 backdrop-blur-xl border border-white/30 p-6 md:p-8 rounded-2xl w-full max-w-md shadow-2xl text-white">
         <button
           onClick={onClose}
           className="absolute top-3 right-4 text-white text-2xl hover:text-red-400"
@@ -132,6 +133,7 @@ const AddEntryModal = ({ onClose }) => {
         </h4>
 
         <div className="space-y-4">
+          {/* Title Input */}
           <input
             type="text"
             value={title}
@@ -140,7 +142,7 @@ const AddEntryModal = ({ onClose }) => {
             className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
 
-          {/* Dropdown */}
+          {/* Type Dropdown */}
           <div className="relative w-full text-black">
             <select
               value={type}
@@ -150,10 +152,10 @@ const AddEntryModal = ({ onClose }) => {
               <option value="" disabled className="text-black">
                 🚀 Select Type
               </option>
-              <option className="text-black pl-1" value="password">Password</option>
-              <option className="text-black pl-1" value="note">Note</option>
-              <option className="text-black pl-1" value="image">Image</option>
-              <option className="text-black pl-1" value="other">Other</option>
+              <option className="text-black" value="password">Password</option>
+              <option className="text-black" value="note">Note</option>
+              <option className="text-black" value="image">Image</option>
+              <option className="text-black" value="other">Other</option>
             </select>
 
             <div className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white pointer-events-none">
@@ -164,7 +166,7 @@ const AddEntryModal = ({ onClose }) => {
             </div>
           </div>
 
-          {/* File Upload or Text Data */}
+          {/* File or Text Input */}
           {type === "image" || type === "other" ? (
             <>
               <input
@@ -199,11 +201,12 @@ const AddEntryModal = ({ onClose }) => {
           />
         </div>
 
+        {/* Save Button */}
         <button
           onClick={handleSubmit}
           className="w-full mt-6 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition duration-300"
         >
-          Save Entry
+          💾 Save Entry
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { PlusCircle } from "lucide-react";
 
 const AddEntryButton = ({ onClick }) => {
   return (
-    <div className="flex justify-center md:justify-end max-w-4xl mx-auto mb-10 px-4">
+    <div className="flex justify-center max-w-4xl mx-auto mb-10 px-4">
       <button
         onClick={onClick}
         className="group relative flex items-center gap-3 px-7 py-3 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white font-semibold text-lg tracking-wide shadow-lg hover:scale-105 transition-transform duration-300"
